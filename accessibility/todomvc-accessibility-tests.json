@@ -1,0 +1,222 @@
+[
+  {
+    "testId": "A11Y-01",
+    "title": "Keyboard: Tab order follows a logical sequence",
+    "preconditions": "Page loaded: https://demo.playwright.dev/todomvc",
+    "steps": [
+      "Focus the page (click anywhere or press Tab until focus appears)",
+      "Press `Tab` repeatedly to move forward through interactive elements until end of page",
+      "Press `Shift+Tab` repeatedly to move backward through interactive elements"
+    ],
+    "expectedResults": [
+      "Focus moves in a clear, logical order that matches the visual layout (left-to-right, top-to-bottom)",
+      "No interactive control is skipped during Tab or Shift+Tab navigation",
+      "Focusable order does not trap keyboard (user can reach all interactive controls and page end)"
+    ]
+  },
+  {
+    "testId": "A11Y-02",
+    "title": "Keyboard: All controls operable by keyboard",
+    "preconditions": "Page loaded and focusable elements discoverable",
+    "steps": [
+      "Tab to the 'new todo' input and type a todo text",
+      "Press `Enter` to add the todo",
+      "Tab to the todo item's checkbox or toggle and press `Space` or `Enter` to toggle completion",
+      "Tab to the delete button/icon and press `Enter` or `Space` to delete the todo"
+    ],
+    "expectedResults": [
+      "User can add a todo using keyboard alone",
+      "User can toggle todo complete/incomplete using keyboard",
+      "User can delete a todo using keyboard",
+      "Action responses happen without requiring mouse interaction"
+    ]
+  },
+  {
+    "testId": "A11Y-03",
+    "title": "ARIA: Page uses correct landmark roles and ARIA attributes",
+    "preconditions": "Page loaded",
+    "steps": [
+      "Inspect page source or using accessibility tree to find `role=\"banner\"` or `<header>` for top area",
+      "Verify presence of `role=\"main\"` or `<main>` for the primary content",
+      "Verify presence of `role=\"contentinfo\"` or `<footer>` for footer area",
+      "Inspect todo list region for appropriate role (e.g., `list`, `listitem`) and interactive controls for `role` and `aria-*` attributes"
+    ],
+    "expectedResults": [
+      "Header has a landmark (`header` or `role='banner'`)",
+      "Main content uses `main` or `role='main'`",
+      "Footer uses `footer` or `role='contentinfo'`",
+      "Todo list is exposed as a list to assistive tech (`role='list'` and children `role='listitem'`) or semantically via `<ul>/<li>`",
+      "Interactive controls expose role and state (e.g., `aria-checked` for checkboxes if custom, `aria-label` for icon-only buttons)"
+    ]
+  },
+  {
+    "testId": "A11Y-04",
+    "title": "ARIA: Name, Role, Value are available to AT (4.1.2) for interactive elements",
+    "preconditions": "Page loaded",
+    "steps": [
+      "Using accessibility inspector (browser DevTools > Accessibility or external tool), check the accessible name, role and value for:",
+      "- New todo input",
+      "- Add/submit action (if separate)",
+      "- Todo item toggle/checkbox",
+      "- Delete button/icon"
+    ],
+    "expectedResults": [
+      "Each interactive element exposes an accurate accessible name (from label, aria-label, aria-labelledby or visible text)",
+      "Each control exposes an appropriate role (e.g., textbox, button, checkbox, listitem)",
+      "When stateful, value/state is exposed (e.g., `aria-checked` for custom toggle)"
+    ]
+  },
+  {
+    "testId": "A11Y-05",
+    "title": "Form fields: 'new todo' input has an associated label",
+    "preconditions": "Page loaded",
+    "steps": [
+      "Inspect the `new todo` input element",
+      "Check for a visible label, `label[for]` association, or `aria-label`/`aria-labelledby`",
+      "Try to read label via screen reader or accessibility tree"
+    ],
+    "expectedResults": [
+      "The `new todo` input has an accessible name provided by a visible label or `aria-label`/`aria-labelledby`",
+      "Screen reader announces the input's purpose when focused"
+    ]
+  },
+  {
+    "testId": "A11Y-06",
+    "title": "Color contrast: Text and UI controls meet 4.5:1 contrast (1.4.3)",
+    "preconditions": "Page loaded; developer tools or color contrast tool available",
+    "steps": [
+      "Identify body text, headings, and interactive element text (buttons, links)",
+      "Measure contrast ratio between text color and background color using a contrast tool for: normal text (>=4.5:1) and large text (>=3:1)",
+      "Measure non-text contrast of important UI components (focus indicators, icons) if relevant"
+    ],
+    "expectedResults": [
+      "All normal-size text meets contrast ratio >= 4.5:1",
+      "Large text (>= 18pt or 14pt bold) meets >= 3:1",
+      "Essential UI components have sufficient non-text contrast per WCAG 2.1 AA (1.4.11) where applicable"
+    ]
+  },
+  {
+    "testId": "A11Y-07",
+    "title": "Focus visibility: Focus indicator is visible and meets contrast requirements",
+    "preconditions": "Page loaded; keyboard navigation available",
+    "steps": [
+      "Tab to interactive elements (input, todos, buttons)",
+      "Observe the visible focus indicator (outline, box-shadow, background change)",
+      "Check that the focus indicator is clearly visible against the surrounding content and meets visual contrast where it relies on color"
+    ],
+    "expectedResults": [
+      "When an element receives keyboard focus, a visible focus indicator is present",
+      "Focus indicator is not hidden or only visible on hover",
+      "Focus indicator contrast ensures visibility for low-vision users (clear boundary and color/shape)",
+      "Focus is not lost after dynamic DOM updates (e.g., after adding a todo) unless intentionally moved"
+    ]
+  },
+  {
+    "testId": "A11Y-08",
+    "title": "Images and icons: Provide alternative text or accessible names (1.1.1)",
+    "preconditions": "Page loaded; inspect images/icons used in UI",
+    "steps": [
+      "Locate any images or icon-only buttons (e.g., delete icon)",
+      "Check for `alt` text on images or `aria-label`/`aria-labelledby` on icon-only buttons",
+      "For decorative images, confirm `alt=\"\"` or role/presentation"
+    ],
+    "expectedResults": [
+      "Images conveying information have descriptive `alt` text",
+      "Decorative images are marked decorative (`alt=\"\"` or proper role/presentation)",
+      "Icon-only buttons provide accessible names via `aria-label` or visible text"
+    ]
+  },
+  {
+    "testId": "A11Y-09",
+    "title": "Landmarks: Header, main and footer exist and are discoverable",
+    "preconditions": "Page loaded",
+    "steps": [
+      "Inspect page for `<header>`, `<main>`, and `<footer>` elements or roles `banner`, `main`, `contentinfo`",
+      "Use a screen reader or accessibility tree to jump between landmarks",
+      "Verify that the primary todo app content is within `main` landmark"
+    ],
+    "expectedResults": [
+      "Page includes header (banner), main (main content) and footer (contentinfo) landmarks",
+      "Users can navigate directly to main landmark using AT landmark navigation",
+      "Landmarks are used semantically to represent page regions"
+    ]
+  },
+  {
+    "testId": "A11Y-10",
+    "title": "Screen reader: Announce dynamic changes (aria-live) when todos are added, completed, or deleted",
+    "preconditions": "Page loaded; screen reader available or accessibility tree inspection tool",
+    "steps": [
+      "Enable a screen reader or use tools that emulate AT announcements",
+      "Add a new todo and observe for announcement",
+      "Mark a todo complete/incomplete and observe for announcement",
+      "Delete a todo and observe for announcement"
+    ],
+    "expectedResults": [
+      "When a todo is added, an accessible announcement is made (e.g., via `aria-live` region) describing the action and item",
+      "When a todo is toggled completed/incomplete, the new state is announced",
+      "When a todo is deleted, an announcement confirms deletion",
+      "Announcements are concise and do not interrupt unnecessarily (correct `aria-live` level used)"
+    ]
+  },
+  {
+    "testId": "A11Y-11",
+    "title": "Dynamic components: Focus management after adding or deleting todos",
+    "preconditions": "Page loaded",
+    "steps": [
+      "Focus the `new todo` input, type a todo, press Enter to add",
+      "Observe where keyboard focus lands after add",
+      "Delete a todo using keyboard, observe focus after deletion",
+      "Repeat adding multiple todos and deleting the last item"
+    ],
+    "expectedResults": [
+      "After adding a todo, focus remains on the input or moves to a predictable and documented location (e.g., newly added item) — consistent behavior",
+      "After deletion focus moves to a logical place (e.g., next todo, previous todo, or a meaningful control) and is not lost",
+      "No unexpected focus traps occur during dynamic updates"
+    ]
+  },
+  {
+    "testId": "A11Y-12",
+    "title": "Semantic HTML: Use native controls where possible (buttons, inputs, lists)",
+    "preconditions": "Page loaded",
+    "steps": [
+      "Inspect markup for use of semantic elements: `<button>`, `<input>`, `<ul>/<li>`",
+      "If custom elements are used (div/span as button), inspect for appropriate `role`, keyboard handlers and accessible name",
+      "Test those custom controls with keyboard and screen reader"
+    ],
+    "expectedResults": [
+      "Native controls are used for actions where possible",
+      "If custom controls are used, they expose correct `role`, keyboard behavior and accessible name/value/state",
+      "Assistive technology interacts with custom controls as expected"
+    ]
+  },
+  {
+    "testId": "A11Y-13",
+    "title": "Forms and errors: No hidden validation barriers and errors are announced",
+    "preconditions": "Page loaded",
+    "steps": [
+      "Attempt to submit an empty todo if the app prevents empty todos",
+      "Observe any validation message and whether it is visible and announced",
+      "Check whether validation message links to the invalid input or focuses it"
+    ],
+    "expectedResults": [
+      "If input is invalid, a clear visible error message is shown",
+      "Error is programmatically associated with the input (`aria-describedby`) and announced by screen readers",
+      "User can find and correct the error using keyboard and AT"
+    ]
+  },
+  {
+    "testId": "A11Y-14",
+    "title": "Color-only information: No instructions or state rely solely on color",
+    "preconditions": "Page loaded",
+    "steps": [
+      "Identify instances where color indicates state (e.g., completed todo greyed out)",
+      "Check whether there is an additional visual indicator (icon, text, strike-through) and programmatic state",
+      "Verify that assistive tech can perceive state (aria-checked, aria-pressed, text)"
+    ],
+    "expectedResults": [
+      "State is not conveyed by color alone; an additional cue (e.g., strike-through, `aria-checked`) is present",
+      "Screen readers announce state changes",
+      "Users with color vision deficiency can perceive all required information"
+    ]
+  }
+]

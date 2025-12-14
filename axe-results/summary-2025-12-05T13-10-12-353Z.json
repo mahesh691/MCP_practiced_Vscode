@@ -1,0 +1,16 @@
+{
+  "violations": 1,
+  "passes": 2,
+  "inapplicable": 3,
+  "incomplete": 0,
+  "criticalViolations": 0,
+  "seriousViolations": 1,
+  "violationDetails": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "nodes": 6
+    }
+  ]
+}

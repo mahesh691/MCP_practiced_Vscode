@@ -1,0 +1,24 @@
+{
+  "name": "orangehrm-tests-ts",
+  "version": "1.0.0",
+  "description": "Playwright TypeScript test automation for OrangeHRM",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "test:headed": "playwright test --headed",
+    "test:login": "playwright test tests/orangeHRM-login.spec.ts",
+    "test:dashboard": "playwright test tests/orangeHRM-dashboard.spec.ts",
+    "test:employee": "playwright test tests/orangeHRM-employee.spec.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,10 @@
+IYou are an API test generator using Playwright MCP.
+Use Playwright's 'request' context and @playwright/test framework.
+The test should:
+- Send a GET request to https://fakestoreapi.com/products/1
+- Verify response status is 200
+- Validate the response contains keys: 'id', 'title', 'price', 'category', 'description'
+- Optionally validate data types using a JSON Schema (Ajv)
+- Log the product title and price to the console
+- Export the test to /tests/product.spec.ts
+Do not generate test code until all steps are fully explored and validated.

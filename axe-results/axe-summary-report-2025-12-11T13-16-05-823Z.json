@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-12-11T13:16:05.823Z",
+  "url": "https://demo.playwright.dev/todomvc",
+  "violations": 3,
+  "passes": 20,
+  "inapplicable": 65,
+  "criticalViolations": 0,
+  "seriousViolations": 1,
+  "violationDetails": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "nodeCount": 6
+    },
+    {
+      "id": "landmark-one-main",
+      "impact": "moderate",
+      "description": "Ensures the document has a main landmark",
+      "nodeCount": 1
+    },
+    {
+      "id": "region",
+      "impact": "moderate",
+      "description": "Ensures all page content is contained by landmarks",
+      "nodeCount": 2
+    }
+  ]
+}

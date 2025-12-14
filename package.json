@@ -1,0 +1,20 @@
+{
+  "name": "pw_batch1session",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^24.8.1",
+    "axe-core": "^4.11.0",
+    "axe-playwright": "^2.2.2"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1"
+  }
+}
