@@ -6,7 +6,7 @@ import { CheckoutPage } from '../pages/CheckoutPage';
 import { OrderConfirmationPage } from '../pages/OrderConfirmationPage';
 
 test.describe('Order Checkout Flow', () => {
-  test('should complete the order successfully', async ({ page }) => {
+  test('should complete the order successfully',{ tag: '@checkOutFlow' }, async ({ page }) => {
     const loginPage = new LoginPage(page);
     const inventoryPage = new InventoryPage(page);
     const cartPage = new CartPage(page);
