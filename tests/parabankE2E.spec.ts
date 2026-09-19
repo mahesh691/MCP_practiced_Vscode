@@ -1,7 +1,7 @@
 import { test } from '../fixtures/testFixture';
 import { Logger } from '../utils/logger';
 
-test('Parabank E2E Flow', async ({ launchPage, authPage, accountPage, transferPage, commonPage }) => {
+test('Parabank E2E Flow',{tag:'@parabank'}, async ({ launchPage, authPage, accountPage, transferPage, commonPage }) => {
   const username = `user_${Date.now()}`;
   const password = 'password123';
 
