@@ -19,7 +19,7 @@ on:
       tag:
         description: 'Enter Playwright tag (example: @smoke)'
         required: true
-        default: '@smoke'
+        default: '@parabank'
         type: string
 
 jobs:
@@ -55,7 +55,7 @@ jobs:
             npx playwright test --grep "${{ inputs.tag }}"
           else
             echo "Running smoke tests"
-            npx playwright test --grep "@smoke"
+            npx playwright test --grep "@parabank"
           fi
 
       # Upload HTML report
