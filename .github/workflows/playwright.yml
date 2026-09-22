@@ -17,9 +17,9 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Enter Playwright tag (example: @smoke)'
+        description: 'Enter Playwright tag (example: @checkOutFlow)'
         required: true
-        default: '@parabank'
+        default: '@checkOutFlow'
         type: string
 
 jobs:
@@ -46,16 +46,19 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      # Run tests
+      # Run Playwright tests
       - name: Run Playwright tests
         shell: bash
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "Running tests with tag: ${{ inputs.tag }}"
             npx playwright test --grep "${{ inputs.tag }}"
           else
-            echo "Running smoke tests"
-            npx playwright test --grep "@parabank"
+            echo "Running checkout flow tests"
+            npx playwright test --grep "@checkOutFlow"
           fi
 
       # Upload HTML report
