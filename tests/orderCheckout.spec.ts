@@ -15,6 +15,7 @@ test.describe('Order Checkout Flow', () => {
 
     // Step 1: Login
     await loginPage.navigate();
+    await loginPage.login(process.env.SAUCE_USERNAME!,process.env.SAUCE_PASSWORD!);
     await loginPage.login('standard_user', 'secret_sauce');
 
     // Step 2: Add items to cart
